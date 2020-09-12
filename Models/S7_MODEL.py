@@ -7,7 +7,7 @@
 #		Session 7 Net Arch				#
 #########################################
 
-
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
