@@ -1,9 +1,21 @@
-####### Model 1 ##############
+
+
+
+
+
+#########################################
+#		Session 7 Net Arch				#
+#########################################
+
+
+import torch.nn as nn
+import torch.nn.functional as F
+
 
 dropout_value = 0.1
-class S7_Net(nn.Module):
+class s7netv1(nn.Module):
     def __init__(self):
-        super(S7_Net, self).__init__()
+        super(s7netv1, self).__init__()
 
         # CONVOLUTION BLOCK 1
         self.convblock1 = nn.Sequential(
@@ -15,16 +27,26 @@ class S7_Net(nn.Module):
             nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(3, 3), padding=1, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(64),
+            nn.Dropout(dropout_value), # output_size = 32, RF = 5
+
+            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(64),
+            nn.Dropout(dropout_value), # output_size = 32, RF = 7
+
+            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(64),
             nn.Dropout(dropout_value)
-        ) # output_size = 32, RF = 5
+        ) # output_size = 32, RF = 9
 
         # TRANSITION BLOCK 1
         self.transblock1 = nn.Sequential(
             nn.Conv2d(in_channels=64, out_channels=32, kernel_size=(1, 1), padding=1, bias=False), 
-            # output_size = 34, RF = 5
+            # output_size = 34, RF = 9
             
             nn.MaxPool2d(2, 2, 1)
-        ) # output_size = 18, RF = 6
+        ) # output_size = 18, RF = 
 
         # CONVOLUTION BLOCK 2
         self.convblock2 = nn.Sequential(
@@ -105,6 +127,15 @@ class S7_Net(nn.Module):
 
         x = x.view(-1, 10)
         return F.log_softmax(x, dim=-1)
-        
-        
-        ##########################################################
+
+
+
+def modelsummary():
+	# from torchsummary import summary
+	use_cuda = torch.cuda.is_available()
+	device = torch.device("cuda" if use_cuda else "cpu")
+	print(device)
+	model = s7netv1().to(device)
+	summary(model, input_size=(3, 32, 32))
+	return model, device
+	
