@@ -11,8 +11,8 @@
 
 # Assignment 7
 
-def s7train(dsname, transform_var):
-	train_set = torchvision.datasets.dsname(root='./data', train=True,download=True, transform=transform_var)
+def s7train(transform_var):
+	train_set = torchvision.datasets.CIFAR10(root='./data', train=True,download=True, transform=transform_var)
 	return train_set
 
 
