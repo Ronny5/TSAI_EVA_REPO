@@ -10,6 +10,7 @@
 import torch
 import torchvision
 import torchvision.transforms as transforms
+import numpy as np
 
 def cifar10_mean_std():
     """Return the true mean of entire test and train dataset"""
