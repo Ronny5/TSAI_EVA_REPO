@@ -23,7 +23,7 @@ def imshow(img):
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
 
 
-def samplegrid(trainloader):
+def samplegrid(trainloader,classes):
 	# get some random training images
 	dataiter = iter(trainloader)
 	images, labels = dataiter.next()
