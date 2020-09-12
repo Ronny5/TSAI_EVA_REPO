@@ -11,8 +11,8 @@
 #########################################
 
 
-def test(dsname,transform_var):
-	test_set  = torchvision.datasets.dsname(root='./data', train=False,download=True, transform=transform_var)
+def test(transform_var):
+	test_set  = torchvision.datasets.CIFAR10(root='./data', train=False,download=True, transform=transform_var)
 	return test_set
 
 
