@@ -47,7 +47,7 @@ def test(norm_mean=0.5, norm_std=0.5):
     return test_transform
 
 
-def train_dataloader():
+def train_dataloader(cuda=FALSE):
     # dataloader arguments 
     dataloader_args = dict(shuffle=True, batch_size=128, num_workers=4, pin_memory=True) if cuda else dict(shuffle=True, batch_size=64, num_workers=1)
     return dataloader_args
