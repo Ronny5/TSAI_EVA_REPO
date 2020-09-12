@@ -19,7 +19,7 @@ def s7train(transform_var):
 	return train_set
 
 
-def s7dataloader(train_set, dataloader_args):
+def s7dataloader(train_set, **dataloader_args):
     # train dataloader
     train_loader = torch.utils.data.DataLoader(train_set, **dataloader_args)
     return
