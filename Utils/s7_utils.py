@@ -42,7 +42,7 @@ def train(norm_mean=0.5, norm_std=0.5, rotx = -5.0, roty = 5.0, hflip = 0.5):
                                       transforms.Normalize(norm_mean, norm_std)])
     return train_transform
 
-def test():
+def test(norm_mean=0.5, norm_std=0.5):
     test_transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize(norm_mean, norm_std)])
     return test_transform
 
